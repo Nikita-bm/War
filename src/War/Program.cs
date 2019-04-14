@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using War.Model;
 
 namespace War
 {
@@ -10,94 +11,31 @@ namespace War
     {
         static void Main(string[] args)
         {
-            //Available resources => 100 H , 50 E, 10T, 5 G
+            var lengaburuArmy = CreateArmy(5, 10, 50, 100);
 
-            //input 
-            //toReplaceH = (input H/2) 
-            //extraNeeded = availableR - toreplace
-            //if9extra needed -> use adjacent 
-
-            Dictionary<string, int> inputBattalionsFalicornia = new Dictionary<string, int>();
-            inputBattalionsFalicornia.Add("Guns", 8);
-            inputBattalionsFalicornia.Add("ArmouredTanks", 26);
-            inputBattalionsFalicornia.Add("Elephants", 96);
-            inputBattalionsFalicornia.Add("Horses", 150);
-          
-         
-           
-            Dictionary<string, int> availableBattalionsLengabiru = new Dictionary<string, int>();
-            availableBattalionsLengabiru.Add("Guns", 5);
-            availableBattalionsLengabiru.Add("ArmouredTanks", 10);
-            availableBattalionsLengabiru.Add("Elephants", 50);
-            availableBattalionsLengabiru.Add("Horses", 100);
+            var falicornianArmy = CreateArmy(5, 20, 101, 100);
+            var result = lengaburuArmy.Attack(falicornianArmy);
+            Console.WriteLine(result.HorseBatallion.Units + "H " + result.ElephantBatallion.Units + "E " + result.ArmouredTanksBatallion.Units + "AT " + result.SlingGunsBatallion.Units + "SG " + result.WarWon);
 
 
-            Dictionary<string, int> remainingBattalionsLengabiru = new Dictionary<string, int>();
+            var falicornianArmy1 = CreateArmy(8, 26, 96, 150);
+            var result1 = lengaburuArmy.Attack(falicornianArmy1);
+            Console.WriteLine(result1.HorseBatallion.UsedUnits + "H " + result1.ElephantBatallion.UsedUnits + "E " + result1.ArmouredTanksBatallion.UsedUnits + "AT " + result1.SlingGunsBatallion.UsedUnits + "SG " + result1.WarWon);
 
 
-            int index = 0;
-            Dictionary<string, int> output = new Dictionary<string, int>();
+            var falicornianArmy2 = CreateArmy(15, 20, 50, 250);
+            var result2 = lengaburuArmy.Attack(falicornianArmy2);
+            Console.WriteLine(result2.HorseBatallion.UsedUnits + "H " + result2.ElephantBatallion.UsedUnits + "E " + result2.ArmouredTanksBatallion.UsedUnits + "AT " + result2.SlingGunsBatallion.UsedUnits + "SG " + result2.WarWon);
 
-            foreach (var battalionFalicornia in inputBattalionsFalicornia.ToList())
-            {
-
-                index += 1;
-                int inputBattalion = inputBattalionsFalicornia.GetValueForKey(battalionFalicornia.Key);
-                int neededEquivalentLengabiruBatallion= inputBattalion % 2 == 0 ?   inputBattalion / 2 : (inputBattalion/2) + 1;
-                int extraNeededLengabiruBatallion = neededEquivalentLengabiruBatallion - availableBattalionsLengabiru.GetValueForKey(battalionFalicornia.Key);
-
-                if (extraNeededLengabiruBatallion > 0)
-                {
-                    KeyValuePair<string, int> nextSmallerBattalion = inputBattalionsFalicornia.ElementAt(index);
-                    output.Add(battalionFalicornia.Key, neededEquivalentLengabiruBatallion - extraNeededLengabiruBatallion);
-                    if ((inputBattalionsFalicornia.GetValueForKey(test.Key)/2) > availableBattalionsLengabiru.GetValueForKey(test.Key))
-                    {
-                        output[remainingBattalionsLengabiru.ElementAt(index - 2).Key] = existing value  + remainingBattalionsLengabiru.GetValueForKey(test.Key)
-                    }
-                    else
-                    {
-                        inputBattalionsFalicornia[test.Key] = inputBattalionsFalicornia.GetValueForKey(nextSmallerBattalion.Key) + (extraNeededLengabiruBatallion *2);
-                    }
-                  
-                }
-                else
-                {
-                    remainingBattalionsLengabiru.Add(battalionFalicornia.Key, availableBattalionsLengabiru.GetValueForKey(battalionFalicornia.Key) - neededEquivalentLengabiruBatallion);
-                    output.Add(battalionFalicornia.Key, neededEquivalentLengabiruBatallion);
-                }
-               
-            }
-            
-
-
-
-
-
+            Console.ReadKey();
 
         }
 
-       
-
-    }
-
-
-
-    public static class ExtensionMethod
-    {
-        public  static int GetValueForKey(this Dictionary<string, int> dictionary, string key)
+        private static Army CreateArmy(int slingGunCapacity, int armouredTankCapacity, int elephantCapacity, int horseCapacity)
         {
-            int value;
-            dictionary.TryGetValue(key, out value);
-
-            return value;
+            Army army = new Army(slingGunCapacity, armouredTankCapacity, elephantCapacity, horseCapacity);
+            return army;
         }
+
     }
-   
-
-    //Classes -> Base class -> Weapon (Rank) ,
-    //Battalion -> List horses (Predecessor and Succssor), Elephants 
-    //Army -> List of battalion 
-
-    //
-
 }
