@@ -12,7 +12,6 @@ namespace War.Model
         {
             Rank = rank;
             Units = units;
-
         }
 
         public int Rank { get; set; }
@@ -22,7 +21,6 @@ namespace War.Model
 
         public int UsedUnits { get; set; }
         public int AdditionalNeededResources { get; set; }
-        public List<Weapon> Weapons { get; set; }
 
         public int ReturnWeightage(int rank, int value)
         {

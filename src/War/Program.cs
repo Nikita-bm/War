@@ -7,24 +7,22 @@ using War.Model;
 
 namespace War
 {
-    class Program
+    public class Program
     {
+        public  static IBattle _battle;
+       
         static void Main(string[] args)
         {
-            var lengaburuArmy = CreateArmy(5, 10, 50, 100);
+            _battle = new Battle(CreateArmy(5, 10, 50, 100));
 
-            var falicornianArmy = CreateArmy(5, 20, 101, 100);
-            var result = lengaburuArmy.Attack(falicornianArmy);
-            Console.WriteLine(result.HorseBatallion.Units + "H " + result.ElephantBatallion.Units + "E " + result.ArmouredTanksBatallion.Units + "AT " + result.SlingGunsBatallion.Units + "SG " + result.WarWon);
+            var result = _battle.LetsBattle(CreateArmy(5, 20, 101, 100));
 
+            Console.WriteLine(result.HorseBatallion.UsedUnits + "H " + result.ElephantBatallion.UsedUnits + "E " + result.ArmouredTanksBatallion.UsedUnits + "AT " + result.SlingGunsBatallion.UsedUnits + "SG " + result.WarWon);
 
-            var falicornianArmy1 = CreateArmy(8, 26, 96, 150);
-            var result1 = lengaburuArmy.Attack(falicornianArmy1);
+            var result1 = _battle.LetsBattle(CreateArmy(8, 26, 96, 150));
             Console.WriteLine(result1.HorseBatallion.UsedUnits + "H " + result1.ElephantBatallion.UsedUnits + "E " + result1.ArmouredTanksBatallion.UsedUnits + "AT " + result1.SlingGunsBatallion.UsedUnits + "SG " + result1.WarWon);
 
-
-            var falicornianArmy2 = CreateArmy(15, 20, 50, 250);
-            var result2 = lengaburuArmy.Attack(falicornianArmy2);
+            var result2 = _battle.LetsBattle(CreateArmy(15, 20, 50, 250));
             Console.WriteLine(result2.HorseBatallion.UsedUnits + "H " + result2.ElephantBatallion.UsedUnits + "E " + result2.ArmouredTanksBatallion.UsedUnits + "AT " + result2.SlingGunsBatallion.UsedUnits + "SG " + result2.WarWon);
 
             Console.ReadKey();

@@ -43,11 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle.cs" />
     <Compile Include="Extensions\IntegerExtensions.cs" />
+    <Compile Include="IBattle.cs" />
     <Compile Include="Model\Army.cs" />
     <Compile Include="Model\Batallion.cs" />
     <Compile Include="Model\ModelExtensions\ModelExtensions.cs" />
-    <Compile Include="Model\Weapon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

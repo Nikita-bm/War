@@ -1,30 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace War.Model.ModelExtensions
+﻿namespace War.Model.ModelExtensions
 {
     public static class ModelExtensions
     {
-        //public static Batallion GetBatallionByType(this Army army ,string batallionType)
-        //{
-        //    Batallion batallion = new Batallion(0, 0);
-        //    switch (batallionType)
-        //    {
-        //        case "Horse":
-        //            return HorseBatallion;
-        //        case "Elephant":
-        //            return ElephantBatallion;
-        //        case "ArmouredTanks":
-        //            return ArmouredTanksBatallion;
-        //        case "SlingGuns":
-        //            return SlingGunsBatallion;
-        //        default:
-        //            return batallion;
-        //    }
-        //}
         public static Batallion GetBatallionByRank(this Army myArmy , int rank)
         {
             switch (rank)
@@ -59,5 +36,6 @@ namespace War.Model.ModelExtensions
             }
             return false;
         }
+
     }
 }
